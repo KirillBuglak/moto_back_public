@@ -1,0 +1,1 @@
+sudo docker build messaging -t messaging:v1.0

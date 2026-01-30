@@ -1,0 +1,57 @@
+server:
+  port: 8443
+  ssl:
+    key-store: config/keystore.p12
+    key-store-password: pass
+    key-alias: 1
+    key-store-type: PKCS12
+    enabled: true
+    enabled-protocols: TLSv1.3 # openssl s_client -connect localhost:8443 -tls1_2 - for tls version check
+
+jjwt:
+  validity:
+    time: 600_000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
+
+spring:
+  application:
+    name: core
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    template:
+      default-topic: just
+  data:
+    mongodb:
+      uri: mongodb://mongo:27017/test
+      auto-index-creation: true
+  profiles:
+    active: "dev"
+  redis:
+    host: redis
+    port: 6379
+    password: redis123
+    lettuce:
+      pool:
+        min-idle: 2
+        max-idle: 5
+        max-active: 10
+---
+spring:
+  config:
+    activate:
+      on-profiles: "dev"
+  r2dbc:
+    url: r2dbc:postgresql://postgres:5432/moto?currentSchema=back
+    username: kirillBuglak
+    password: xPost_4!5o0Oh@

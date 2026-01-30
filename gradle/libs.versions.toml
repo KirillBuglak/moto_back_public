@@ -1,0 +1,116 @@
+[versions]
+kotlin = "2.1.20"
+kotlinSpring = "1.9.25"
+dependencyManagement = "1.1.6"
+lombok = "1.18.34"
+postgres = "42.7.4"
+postgres-r2dbc = "1.0.7.RELEASE"
+spring = "3.3.5"
+jackson = "2.17.2"
+lettuce = "6.5.3.RELEASE"
+reactor = "3.6.11"
+reactorExtra = "3.5.2"
+reactorKotlinExtension = "1.2.3"
+coroutines = "1.8.1"
+reactorMicrometer = "1.1.11"
+jjwt = "0.12.6"
+kafka = "3.2.4"
+reactor-kafka = "1.3.23"
+velocity = "2.3"
+velocityTools = "3.1"
+mockk = "1.13.12"
+mockitoKotlin = "5.4.0"
+test-launcher = "1.10.5"
+micrometer = "1.16.1"
+
+[plugins]
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinSpring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinSpring" }
+springBoot = { id = "org.springframework.boot", version.ref = "spring" }
+dependencyManagement = { id = "io.spring.dependency-management", version.ref = "dependencyManagement" }
+
+[libraries]
+# LOMBOK
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+
+# MAIL
+mail = { module = "org.springframework.boot:spring-boot-starter-mail", version.ref = "spring" }
+
+# POSTGRES
+postgres = { module = "org.postgresql:postgresql", version.ref = "postgres" }
+postgres-r2dbc = { module = "org.postgresql:r2dbc-postgresql", version.ref = "postgres-r2dbc" }
+postgres-spring-r2dbc = { module = "org.springframework.boot:spring-boot-starter-data-r2dbc", version.ref = "spring" }
+
+# SPRING
+spring-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring" }
+spring-devtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "spring" }
+spring-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "spring" }
+spring-commons = { module = "org.springframework.data:spring-data-commons", version.ref = "spring" }
+
+# SECURITY
+security = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "spring" }
+
+# REDIS
+redis = { module = "org.springframework.boot:spring-boot-starter-data-redis-reactive", version.ref = "spring" }
+lettuce = { module = "io.lettuce:lettuce-core", version.ref = "lettuce" }
+
+# MONGO
+mongo = { module = "org.springframework.boot:spring-boot-starter-data-mongodb", version.ref = "spring" }
+mongo-reactive = { module = "org.springframework.boot:spring-boot-starter-data-mongodb-reactive", version.ref = "spring" }
+
+# KOTLIN
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-reactive = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactive", version.ref = "coroutines" }
+kotlinx-coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "coroutines" }
+reactor-kotlin-extensions = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions", version.ref = "reactorKotlinExtension" }
+kotlin-jackson = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+
+# JACKSON
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jackson" }
+
+# REACTOR
+reactor-core = { module = "io.projectreactor:reactor-core", version.ref = "reactor" }
+reactor-extra = { module = "io.projectreactor.addons:reactor-extra", version.ref = "reactorExtra" }
+reactor-core-micrometer = { module = "io.projectreactor:reactor-core-micrometer", version.ref = "reactorMicrometer" }
+
+# JWT
+jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
+
+# KAFKA
+kafka = { module = "org.springframework.kafka:spring-kafka", version.ref = "kafka" }
+reactor-kafka = { module = "io.projectreactor.kafka:reactor-kafka", version.ref = "reactor-kafka" }
+
+# APACHE
+velocity-engine-core = { module = "org.apache.velocity:velocity-engine-core", version.ref = "velocity" }
+velocity-tools-generic = { module = "org.apache.velocity.tools:velocity-tools-generic", version.ref = "velocityTools" }
+
+# TESTS
+starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring" }
+reactor-test = { module = "io.projectreactor:reactor-test", version.ref = "reactor" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+testLauncher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "test-launcher" }
+
+# MONITORING
+micrometer = { module = "io.micrometer:micrometer-registry-prometheus", version.ref = "micrometer" }
+
+[bundles]
+kotlinBundle = ["kotlin-reflect", "kotlinx-coroutines-core", "kotlinx-coroutines-reactive", "kotlinx-coroutines-reactor", "reactor-kotlin-extensions", "kotlin-jackson"]
+jacksonBundle = ["jackson-annotations", "jackson-databind", "jackson-core"]
+kafkaBundle = ["kafka", "reactor-kafka"]
+postgresR2dbc = ["postgres-r2dbc", "postgres-spring-r2dbc"]
+redisBundle = ["redis", "lettuce"]
+reactorBundle = ["reactor-core", "reactor-extra", "reactor-core-micrometer"]
+mongoBundle = ["mongo", "mongo-reactive"]
+jjwtBundle = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
+springImplBundle = ["spring-webflux", "spring-commons"]
+springDevToolsBundle = ["spring-devtools"]
+apacheBundle = ["velocity-engine-core", "velocity-tools-generic"]
+testBundle = ["starter-test", "reactor-test", "kotlin-test", "mockk", "mockito-kotlin"]
+monitoringBundle = ["spring-actuator", "micrometer"]

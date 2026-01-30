@@ -1,0 +1,48 @@
+server:
+  port: 8444
+  ssl:
+    key-store: config/keystore.p12
+    key-store-password: pass
+    key-alias: 1
+    key-store-type: PKCS12
+    enabled: true
+    enabled-protocols: TLSv1.3 # openssl s_client -connect localhost:8444 -tls1_2 - for tls version check
+
+
+spring:
+  application:
+    name: messaging
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.deserializer.value.default.type: kb.moto.model.kafka.EmailKafkaMessage
+        spring.json.trusted.packages: "kb.moto.model.kafka"
+    template:
+      default-topic: just
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: some@gmail.com
+    password: password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  r2dbc:
+    url: r2dbc:postgresql://postgres:5432/moto
+    username: kirillBuglak
+    password: xPost_4!5o0Oh@
+    properties:
+      schema: messages
+
+  logging:
+    level:
+      io.r2dbc.postgresql: DEBUG
+      org.springframework.r2dbc.core: DEBUG

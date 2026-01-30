@@ -1,0 +1,1 @@
+sudo docker build core -t core:v1.0
