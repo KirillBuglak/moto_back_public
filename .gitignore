@@ -1,0 +1,13 @@
+/build/
+/core/build/
+/commons/build/
+/messaging/build/
+/.gradle/
+/core/.gradle/
+/commons/.gradle/
+/messaging/.gradle/
+/core/gradle/
+/messaging/gradle/
+/.idea/
+/.kotlin/
+Comments.md
